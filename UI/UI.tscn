@@ -1,0 +1,161 @@
+[gd_scene load_steps=10 format=3 uid="uid://nqsbsiadmnae"]
+
+[ext_resource type="Script" path="res://UI/Scripts/bd_dialogos.gd" id="1_7bsv8"]
+[ext_resource type="Texture2D" uid="uid://bfwweu45yulj4" path="res://Skills/icones/icone parede.png" id="1_b7os2"]
+[ext_resource type="Script" path="res://UI/Scripts/main.gd" id="1_tp5gk"]
+[ext_resource type="Texture2D" uid="uid://olqwb3rroty3" path="res://Skills/icones/icone push.jpg" id="2_nlyk2"]
+[ext_resource type="Texture2D" uid="uid://cxuypkarmkj8m" path="res://UI/Assets/UI.png" id="3_t8xvx"]
+[ext_resource type="Script" path="res://UI/dialogo.gd" id="5_p1x88"]
+[ext_resource type="Texture2D" uid="uid://b2eu8oxe6xy63" path="res://UI/Assets/coelhinho 2.png" id="6_5fohy"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n5pkc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5qkgg"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_tp5gk")
+
+[node name="BD_dialogos" type="Node" parent="."]
+script = ExtResource("1_7bsv8")
+
+[node name="PlayerUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="GridContainer" type="GridContainer" parent="PlayerUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -66.0
+offset_top = -91.0
+offset_right = 66.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+columns = 2
+
+[node name="icon skill 1" type="TextureRect" parent="PlayerUI/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("1_b7os2")
+expand_mode = 4
+
+[node name="icon skill 2" type="TextureRect" parent="PlayerUI/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("2_nlyk2")
+expand_mode = 4
+
+[node name="label cargas skill 1" type="Label" parent="PlayerUI/GridContainer"]
+layout_mode = 2
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label cargas skill 2" type="Label" parent="PlayerUI/GridContainer"]
+layout_mode = 2
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dialogo" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("5_p1x88")
+
+[node name="TextureRect" type="TextureRect" parent="Dialogo"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_t8xvx")
+expand_mode = 1
+
+[node name="Panel" type="Panel" parent="Dialogo"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -301.0
+offset_top = -210.0
+offset_right = 480.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_n5pkc")
+
+[node name="Button" type="Button" parent="Dialogo/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_5qkgg")
+action_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Dialogo/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Dialogo/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="MGNome" type="MarginContainer" parent="Dialogo/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Nome" type="Label" parent="Dialogo/Panel/MarginContainer/VBoxContainer/MGNome"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "O Covarde"
+
+[node name="Dialogo" type="Label" parent="Dialogo/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+theme_override_colors/font_color = Color(0.96, 0.4416, 0.54528, 1)
+theme_override_font_sizes/font_size = 14
+text = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"
+
+[node name="MarginContainer3" type="MarginContainer" parent="Dialogo/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Dialogo/Panel/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Label" type="Label" parent="Dialogo/Panel/MarginContainer/VBoxContainer/MarginContainer3/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "..."
+
+[node name="TextureRect2" type="TextureRect" parent="Dialogo"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = -626.0
+offset_right = 373.0
+offset_bottom = 279.0
+grow_vertical = 0
+texture = ExtResource("6_5fohy")

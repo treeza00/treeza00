@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://d21tsriup2lar"]
+
+[ext_resource type="PackedScene" uid="uid://bhjonmhd6s1on" path="res://Classes e Componentes/componentes/hitbox.tscn" id="1_2p5ig"]
+[ext_resource type="Script" path="res://Skills/bullet.gd" id="1_dgqr2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6dfap"]
+radius = 0.2
+height = 0.4
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_idlr6"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fn0cy"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_42by8"]
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tjh6r"]
+albedo_color = Color(0.155974, 0.170508, 0.251489, 1)
+
+[node name="Bullet" type="RigidBody3D"]
+collision_layer = 0
+collision_mask = 6
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("1_dgqr2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.820121, 0)
+mesh = SubResource("SphereMesh_6dfap")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.820121, 0)
+shape = SubResource("SphereShape3D_idlr6")
+
+[node name="hitbox" parent="." instance=ExtResource("1_2p5ig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.820121, 0)
+dmg = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+shape = SubResource("SphereShape3D_fn0cy")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0362176, 0)
+mesh = SubResource("PlaneMesh_42by8")
+surface_material_override/0 = SubResource("StandardMaterial3D_tjh6r")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

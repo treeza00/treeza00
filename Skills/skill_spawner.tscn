@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://0sivv57a3k0o"]
+
+[ext_resource type="Texture2D" uid="uid://bxlvdugwb5t71" path="res://icon.svg" id="1_kqnsp"]
+[ext_resource type="Script" path="res://Skills/skill_spawner.gd" id="1_ytqa2"]
+
+[node name="skill_spawner" type="Node3D"]
+script = ExtResource("1_ytqa2")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.05, 0)
+modulate = Color(0.234397, 0.251545, 0.262801, 1)
+texture = ExtResource("1_kqnsp")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

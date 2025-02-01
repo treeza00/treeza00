@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr8epg37jpe30"]
+
+[ext_resource type="Script" path="res://Classes e Componentes/Pushable.gd" id="1_ocfry"]
+[ext_resource type="PackedScene" uid="uid://bhjonmhd6s1on" path="res://Classes e Componentes/componentes/hitbox.tscn" id="2_tmv15"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7qhjr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_arfa6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k21jp"]
+size = Vector3(1.00282, 1.01625, 0.997315)
+
+[node name="Box" type="RigidBody3D"]
+collision_layer = 12
+collision_mask = 19
+script = ExtResource("1_ocfry")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_7qhjr")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_arfa6")
+
+[node name="hitbox" parent="." instance=ExtResource("2_tmv15")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00291014, 0.490745, 0.00573733)
+shape = SubResource("BoxShape3D_k21jp")

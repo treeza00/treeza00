@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://gkqwfpyrlbla"]
+
+[ext_resource type="Texture2D" uid="uid://0wvrhgvu7hmc" path="res://assets/textures/greyboxing textures/Dark/texture_03.png" id="1_2dtm8"]
+
+[sub_resource type="PlaceholderMaterial" id="PlaceholderMaterial_tpm6k"]
+
+[resource]
+next_pass = SubResource("PlaceholderMaterial_tpm6k")
+albedo_texture = ExtResource("1_2dtm8")
+uv1_triplanar = true

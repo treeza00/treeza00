@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dy4xfgqpwuf15"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_k61g2"]
+[ext_resource type="PackedScene" uid="uid://bd3cr1xfshs4v" path="res://Classes e Componentes/componentes/hurtbox.tscn" id="2_vt8iu"]
+[ext_resource type="PackedScene" uid="uid://nqsbsiadmnae" path="res://UI/UI.tscn" id="4_rk6gd"]
+[ext_resource type="PackedScene" uid="uid://bu0ihyeks6jp1" path="res://Player/chifrudinho.fbx" id="5_iga4d"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_n26oj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5srdb"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_31hty"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xewlt"]
+albedo_color = Color(0.958806, 0.851503, 0.86844, 1)
+
+[node name="Player" type="CharacterBody3D"]
+collision_mask = 30
+script = ExtResource("1_k61g2")
+Max_Health = 20.0
+
+[node name="hurtbox" parent="." instance=ExtResource("2_vt8iu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.941653, 0)
+shape = SubResource("CapsuleShape3D_n26oj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00751, 0)
+shape = SubResource("CapsuleShape3D_5srdb")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999646, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_31hty")
+material = SubResource("StandardMaterial3D_xewlt")
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="dash_time" type="Timer" parent="Timers"]
+wait_time = 0.06
+one_shot = true
+
+[node name="dash_cd" type="Timer" parent="Timers"]
+one_shot = true
+
+[node name="Skills" type="Node" parent="."]
+
+[node name="chifrudinho" parent="." instance=ExtResource("5_iga4d")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, -0.0169287, 0, -0.0455871)
+
+[node name="UI" parent="." instance=ExtResource("4_rk6gd")]
+
+[connection signal="timeout" from="Timers/dash_time" to="." method="_on_dash_time_timeout"]
+[connection signal="timeout" from="Timers/dash_cd" to="." method="_on_dash_cd_timeout"]
+
+[editable path="UI"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cia5jyc8jj5j2"]
+
+[ext_resource type="Script" path="res://Skills/push_area.gd" id="1_w3mjo"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ihij1"]
+radius = 2.06766
+
+[node name="push_area" type="Area3D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_w3mjo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ihij1")
+
+[node name="push_timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="push_timer" to="." method="_on_push_timer_timeout"]

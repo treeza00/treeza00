@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://ulrfxppwm7s0"]
+
+[ext_resource type="Script" path="res://Enemies/bosses/boss_1.gd" id="1_l740k"]
+[ext_resource type="PackedScene" uid="uid://bd3cr1xfshs4v" path="res://Classes e Componentes/componentes/hurtbox.tscn" id="2_2mdfu"]
+[ext_resource type="PackedScene" uid="uid://bhjonmhd6s1on" path="res://Classes e Componentes/componentes/hitbox.tscn" id="3_dy5mu"]
+[ext_resource type="PackedScene" uid="uid://brogicepex78a" path="res://Enemies/bosses/coelhinho.fbx" id="4_ltuge"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a35wg"]
+radius = 1.0
+height = 3.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7stpi"]
+radius = 1.0
+height = 3.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vnnfg"]
+radius = 1.3
+height = 3.6
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1iq4c"]
+radius = 1.09028
+
+[node name="Boss" type="CharacterBody3D"]
+collision_layer = 16
+collision_mask = 5
+script = ExtResource("1_l740k")
+Max_Health = 50.0
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48382, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_a35wg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.48547, 0)
+shape = SubResource("CapsuleShape3D_7stpi")
+
+[node name="areahurtbox" parent="." instance=ExtResource("2_2mdfu")]
+
+[node name="colisaohurtbox" type="CollisionShape3D" parent="areahurtbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.67564, 0)
+shape = SubResource("CapsuleShape3D_vnnfg")
+
+[node name="timer_check_player" type="Timer" parent="."]
+autostart = true
+
+[node name="timer_aux" type="Timer" parent="."]
+autostart = true
+
+[node name="hitbox" parent="." instance=ExtResource("3_dy5mu")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00554204, 1, -2.46967)
+shape = SubResource("CylinderShape3D_1iq4c")
+
+[node name="coelhinho" parent="." instance=ExtResource("4_ltuge")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0.0427737, 0.363939, -0.0390408)
+
+[connection signal="timeout" from="timer_check_player" to="." method="_on_timer_check_player_timeout"]
+[connection signal="timeout" from="timer_aux" to="." method="_on_timer_aux_timeout"]
+
+[editable path="areahurtbox"]
